@@ -11,6 +11,21 @@ import com.algaworks.ecommerce.model.Produto;
 public class OpreracoesComTransacaoTest extends EntityManagerTest {
 
 	@Test
+	public void removerObjeto() {
+		Produto produto = entityManager.find(Produto.class, 3);
+		
+		entityManager.getTransaction().begin();
+		entityManager.remove(produto);
+		entityManager.getTransaction().commit();
+		
+		//entityManager.clear();   Não é necessário na asserção para operação de remoção.
+		
+		Produto produtoVerificacao = entityManager.find(Produto.class, 3);
+		Assert.assertNull(produtoVerificacao);
+		
+	}
+	
+	@Test
 	public void inserirOPrimeiroObjeto() {
 		Produto produto = new Produto();
 		
