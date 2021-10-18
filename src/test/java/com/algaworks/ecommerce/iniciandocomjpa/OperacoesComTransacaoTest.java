@@ -15,7 +15,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 	public void impedirOperacaoComBancoDeDados() {
 		Produto produto = entityManager.find(Produto.class, 1);
 
-		entityManager.detach(produto);// Não vai rodar nenhum comando.
+		entityManager.detach(produto);// Não vai rodar nenhum comando SQL.
 		
 		entityManager.getTransaction().begin();
 		produto.setNome("Kindle Paperwhite 2ª Geração");
