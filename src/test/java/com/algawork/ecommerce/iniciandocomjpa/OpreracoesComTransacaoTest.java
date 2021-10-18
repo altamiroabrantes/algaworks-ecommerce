@@ -11,6 +11,51 @@ import com.algaworks.ecommerce.model.Produto;
 public class OpreracoesComTransacaoTest extends EntityManagerTest {
 
 	@Test
+	public void mostarDiferencaPersistMerge() {
+		Produto produtoPersist = new Produto();
+
+		produtoPersist.setId(5);
+		produtoPersist.setNome("Smartphone One Plus");
+		produtoPersist.setDescricao("O processador mais rápido.");
+		produtoPersist.setPreco(new BigDecimal(2000));
+
+		entityManager.getTransaction().begin();
+		//Roda somente o insert
+		entityManager.persist(produtoPersist); // faz o find, não encontra o objeto e realiza o insert
+		//Roda o update
+		produtoPersist.setNome("Smartphone Two Plus");
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Produto produtoVerificacaoPersist = entityManager.find(Produto.class, produtoPersist.getId());
+		Assert.assertNotNull(produtoVerificacaoPersist);
+		
+		
+		
+		Produto produtoMerge = new Produto();
+
+		produtoMerge.setId(6);
+		produtoMerge.setNome("Notebook Dell");
+		produtoMerge.setDescricao("O melhor da categoria.");
+		produtoMerge.setPreco(new BigDecimal(2000));
+
+		entityManager.getTransaction().begin();
+		//Rodou insert
+		produtoMerge = entityManager.merge(produtoMerge); 
+		//Rodou update
+		produtoMerge.setNome("Notebook Dell 2");
+		entityManager.getTransaction().commit();
+
+		entityManager.clear();
+
+		Produto produtoVerificacaoMerge = entityManager.find(Produto.class, produtoMerge.getId());
+		Assert.assertNotNull(produtoVerificacaoMerge);
+		
+	}
+
+	
+	@Test
 	public void inserirObjetoComMerge() {
 		Produto produto = new Produto();
 
