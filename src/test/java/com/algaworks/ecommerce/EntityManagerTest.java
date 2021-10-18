@@ -1,4 +1,4 @@
-package com.algawork.ecommerce;
+package com.algaworks.ecommerce;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

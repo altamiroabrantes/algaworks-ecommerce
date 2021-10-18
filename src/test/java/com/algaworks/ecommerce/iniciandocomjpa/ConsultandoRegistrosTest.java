@@ -1,9 +1,9 @@
-package com.algawork.ecommerce.iniciandocomjpa;
+package com.algaworks.ecommerce.iniciandocomjpa;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.algawork.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Produto;
 
 public class ConsultandoRegistrosTest extends EntityManagerTest{

@@ -1,14 +1,14 @@
-package com.algawork.ecommerce.iniciandocomjpa;
+package com.algaworks.ecommerce.iniciandocomjpa;
 
 import java.math.BigDecimal;
 
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.algawork.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Produto;
 
-public class OpreracoesComTransacaoTest extends EntityManagerTest {
+public class OperacoesComTransacaoTest extends EntityManagerTest {
 
 	@Test
 	public void mostarDiferencaPersistMerge() {
