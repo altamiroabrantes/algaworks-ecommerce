@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Cliente {
+public class NotaFiscal {
 	
 	@EqualsAndHashCode.Include
 	@Id
@@ -19,6 +19,6 @@ public class Cliente {
 
 	private String nome;
 	
-	private SexoCliente sexo;
+	private Integer CategoriaPaiId;
 
 }

@@ -1,5 +1,8 @@
 package com.algaworks.ecommerce.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -11,14 +14,20 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Cliente {
+public class Pedido {
 	
 	@EqualsAndHashCode.Include
 	@Id
 	private Integer id;
 
-	private String nome;
+	private LocalDateTime dataPedido;
 	
-	private SexoCliente sexo;
+	private LocalDateTime dataInclusao;
+	
+	private Integer notaFiscalId;
+	
+	private BigDecimal total;
+	
+	private StatusPedido status;
 
 }
