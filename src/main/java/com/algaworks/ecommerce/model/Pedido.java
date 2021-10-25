@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -28,8 +29,8 @@ public class Pedido {
 	@Column(name= "data_pedido")
 	private LocalDateTime dataPedido;
 	
-	@Column(name= "data_inclusao")
-	private LocalDateTime dataInclusao;
+	@Column(name= "data_conclusao")
+	private LocalDateTime dataConclusao;
 	
 	@Column(name= "nota_fiscal_id")
 	private Integer notaFiscalId;
@@ -38,5 +39,8 @@ public class Pedido {
 	
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
-
+	
+	@Embedded
+	private EnderecoEntregaPedido enderecoEntrega;
+	
 }
