@@ -52,7 +52,7 @@ public class Pedido {
 	private StatusPedido status;
 	
 	@OneToMany(mappedBy = "pedido")
-	private List<ItemPedido> itensPedido;
+	private List<ItemPedido> itens;
 	
 	@Embedded
 	private EnderecoEntregaPedido enderecoEntrega;
