@@ -1,9 +1,12 @@
 package com.algaworks.ecommerce.relacionamentos;
 
+import java.util.Date;
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import com.algaworks.ecommerce.EntityManagerTest;
+import com.algaworks.ecommerce.model.NotaFiscal;
 import com.algaworks.ecommerce.model.PagamentoCartao;
 import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.StatusPagamento;
@@ -11,7 +14,7 @@ import com.algaworks.ecommerce.model.StatusPagamento;
 public class RelacionamentoOneToOneTest extends EntityManagerTest{
 	
 	@Test
-	public void verificarRelacionamento() {
+	public void verificarRelacionamentoPedidoPagamentoCartao() {
 		Pedido pedido = entityManager.find(Pedido.class, 1);
 		PagamentoCartao pagamentoCartao = new PagamentoCartao();
 		pagamentoCartao.setNumero("1234");
@@ -26,6 +29,26 @@ public class RelacionamentoOneToOneTest extends EntityManagerTest{
 		
 		Pedido pedidoVerificado = entityManager.find(Pedido.class, 1);
 		Assert.assertNotNull(pedidoVerificado.getPagamento());
+		
+	}
+	
+	@Test
+	public void verificarRelacionamentoPedidoNotaFiscal() {
+		Pedido pedido = entityManager.find(Pedido.class, 1);
+		
+		NotaFiscal notaFiscal = new NotaFiscal();
+		notaFiscal.setXml("TESTE");
+		notaFiscal.setDataEmissao(new Date());
+		notaFiscal.setPedido(pedido);
+		
+		entityManager.getTransaction().begin();
+		entityManager.persist(notaFiscal);
+		entityManager.getTransaction().commit();
+		
+		entityManager.clear();
+		
+		Pedido pedidoVerificado = entityManager.find(Pedido.class, 1);
+		Assert.assertNotNull(pedidoVerificado.getNotaFiscal());
 		
 	}
 }
