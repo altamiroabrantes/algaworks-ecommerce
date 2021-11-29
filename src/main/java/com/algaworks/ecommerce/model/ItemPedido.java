@@ -17,12 +17,14 @@ public class ItemPedido {
     @EmbeddedId
     private ItemPedidoId id;
 	
-	@ManyToOne(optional = false)
-    @JoinColumn(name = "pedido_id", insertable = false, updatable = false)
+	@MapsId("pedidoId")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "pedido_id")
     private Pedido pedido;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "produto_id", insertable = false, updatable = false)
+    @MapsId("produtoId")
+	@ManyToOne(optional = false)
+    @JoinColumn(name = "produto_id")
     private Produto produto;
 
     @Column(name = "preco_produto")
