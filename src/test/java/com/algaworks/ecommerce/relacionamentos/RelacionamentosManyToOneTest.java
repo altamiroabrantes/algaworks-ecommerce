@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.algaworks.ecommerce.EntityManagerTest;
 import com.algaworks.ecommerce.model.Cliente;
 import com.algaworks.ecommerce.model.ItemPedido;
+import com.algaworks.ecommerce.model.ItemPedidoId;
 import com.algaworks.ecommerce.model.Pedido;
 import com.algaworks.ecommerce.model.Produto;
 import com.algaworks.ecommerce.model.StatusPedido;
@@ -47,25 +48,30 @@ public class RelacionamentosManyToOneTest extends EntityManagerTest{
 		pedido.setDataCriacao(LocalDateTime.now());
 		pedido.setCliente(cliente);
 		pedido.setTotal(BigDecimal.TEN);
-		
-		
-		ItemPedido itemPedido = new ItemPedido();
-		itemPedido.setPrecoProduto(produto.getPreco());
-		itemPedido.setQuantidade(1);
-		itemPedido.setPedido(pedido);
-		itemPedido.setProduto(produto);
-		
-		
-		entityManager.getTransaction().begin();
+			
 		entityManager.persist(pedido);
-		entityManager.persist(itemPedido);
-		entityManager.getTransaction().commit();
+		// Pode ser que logo ao executar o método "persist" o JPA já faça a sincronização com a base.
+        // Mas caso isso não aconteça, o flush garante a sincronização.
+        entityManager.flush();
 		
-		entityManager.clear();
-		
-		ItemPedido itemPedidoVerificacao = entityManager.find(ItemPedido.class, itemPedido.getId());
-		Assert.assertNotNull(itemPedidoVerificacao.getPedido());
-		Assert.assertNotNull(itemPedidoVerificacao.getProduto());
+        ItemPedido itemPedido = new ItemPedido();
+        itemPedido.setPedidoId(pedido.getId());
+        itemPedido.setProdutoId(produto.getId());
+        itemPedido.setPrecoProduto(produto.getPreco());
+        itemPedido.setQuantidade(1);
+        itemPedido.setPedido(pedido);
+        itemPedido.setProduto(produto);
+
+        entityManager.persist(itemPedido);
+
+        entityManager.getTransaction().commit();
+
+        entityManager.clear();
+
+        ItemPedido itemPedidoVerificacao = entityManager.find(
+                ItemPedido.class, new ItemPedidoId(pedido.getId(), produto.getId()));
+        Assert.assertNotNull(itemPedidoVerificacao.getPedido());
+        Assert.assertNotNull(itemPedidoVerificacao.getProduto());
 		
 	}
 }
