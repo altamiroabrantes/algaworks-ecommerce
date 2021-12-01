@@ -43,6 +43,7 @@ public class MapsIdTest extends EntityManagerTest {
         pedido.setTotal(produto.getPreco());
 
         ItemPedido itemPedido = new ItemPedido();
+        //itemPedido.setId(new ItemPedidoId(1,1)); Não precisa dos parâmetros com o @MapsId
         itemPedido.setId(new ItemPedidoId());
         itemPedido.setPedido(pedido);
         itemPedido.setProduto(produto);
