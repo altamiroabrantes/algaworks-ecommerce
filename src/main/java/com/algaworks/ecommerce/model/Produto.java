@@ -9,9 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
@@ -20,15 +17,11 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.algaworks.ecommerce.listener.GenericoListener;
-import com.algaworks.ecommerce.listener.GerarNotaFiscalListener;
-
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @EntityListeners({GenericoListener.class})
 @Entity
 @Table(name = "produto")

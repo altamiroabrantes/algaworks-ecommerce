@@ -1,6 +1,5 @@
 package com.algaworks.ecommerce.conhecendoentitymanager;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import com.algaworks.ecommerce.EntityManagerTest;
@@ -23,10 +22,10 @@ public class FlushTest extends EntityManagerTest {
 			entityManager.flush();
 
 			if (pedido.getPagamento() == null) {
-				throw new RuntimeException("Pedido ainda não foi pago");
+				throw new RuntimeException("Pedido ainda nÃ£o foi pago");
 			}
 			
-//			Uma consulta obriga o JPA executar o Flush (Sincronizar o que ele tem na memória)
+//			Uma consulta obriga o JPA executar o Flush (Sincronizar o que ele tem na memï¿½ria)
 //			Pedido pedidoPago = entityManager.createQuery("select p from Pedido p where p.id = 1",Pedido.class).getSingleResult();
 //			Assert.assertEquals(pedido.getStatus(), pedidoPago.getStatus());
 

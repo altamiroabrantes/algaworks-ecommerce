@@ -31,6 +31,7 @@ public class HerancaTest extends EntityManagerTest{
 	
 	@Test
 	public void buscarPagamentos() {
+		@SuppressWarnings("unchecked")
 		List<Pagamento> pagamentos = entityManager
 				.createQuery("select p from Pagamento p")
 				.getResultList();
