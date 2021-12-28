@@ -17,14 +17,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "nota_fiscal")
-public class NotaFiscal {
-
-    @EqualsAndHashCode.Include
-    @Id
-    private Integer id;
+public class NotaFiscal extends EntidadeBaseInteger {
 
     @MapsId
     @OneToOne(optional = false)

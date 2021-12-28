@@ -32,12 +32,7 @@ import lombok.Setter;
 @EntityListeners({GenericoListener.class})
 @Entity
 @Table(name = "produto")
-public class Produto {
-	
-	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Produto extends EntidadeBaseInteger {
 	
 	@Column(name= "data_criacao", updatable = false) 
 	private LocalDateTime dataCriacao;

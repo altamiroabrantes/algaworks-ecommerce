@@ -18,17 +18,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @Table(name = "categoria")
-public class Categoria {
+public class Categoria extends EntidadeBaseInteger {
 	
-	@EqualsAndHashCode.Include
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-		
-	private Integer id;
-
 	private String nome;
 	
 	@ManyToOne
