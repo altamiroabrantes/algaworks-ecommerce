@@ -6,3 +6,4 @@
 .springBeans
 *.class
 target/*
+/target/
